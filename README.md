@@ -19,7 +19,8 @@ We consider the following Model Predictive Control model:
 
 ![equation](./images/equation0006.png)
 
-![equation](./images/equation0007.png)
+
+
 
 
 
