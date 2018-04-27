@@ -30,6 +30,7 @@ The cost function is:
 ![equation](./images/equation0007.png)
 
 
+## Timestep Length and Elapsed Duration (N & dt)
 
 
 
