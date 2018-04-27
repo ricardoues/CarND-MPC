@@ -35,7 +35,14 @@ I started with the following pair of values N = 25 and dt = 0.05. These values a
 
 [https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp)
 
-In this moment we don't consider latency. I think the combination of values N=25 and dt = 0.05 is good but I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It woul
+In this moment we don't consider latency. I think the combination of values N=25 and dt = 0.05 is good but I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
+
+    // Minimize the value gap between sequential actuations.
+    for (int t = 0; t < N - 2; t++) {
+      fg[0] += CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+      fg[0] += 100*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+    }
+
 
 
 
