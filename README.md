@@ -41,7 +41,7 @@ In this moment we don't consider latency. I think the combination of values N=25
 
 
 
-.I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
+I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
 
 
 ```cpp
