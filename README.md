@@ -83,7 +83,7 @@ We use a polynomial degree of order 3. In order to transform the waypoints to th
 
 ```
 
-Moreover, we have taken account that the vehicle's position is (0,0) that is why we assign to x,y, and psi the value of zero in the following C++ code. 
+Moreover, we have taken into account that the vehicle's position is (0,0) that is why we assign to x,y, and psi the value of zero in the following C++ code. 
 
 ```cpp
    Eigen::VectorXd state(6);
