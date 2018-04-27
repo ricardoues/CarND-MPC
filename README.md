@@ -62,9 +62,34 @@ The car's behaviour looks better.
 
 ## Polynomial Fitting and MPC Preprocessing 
 
-We use a polynomial degree of order 3. In order to transform the waypoints to the car's coordinate system (the server returns waypoints using the map's coordinate system). 
+We use a polynomial degree of order 3. In order to transform the waypoints to the car's coordinate system (the server returns waypoints using the map's coordinate system) we use the following C++ code. 
 
 
+```cpp
+
+   // The following two lineas were take from
+   // https://stackoverflow.com/questions/17036818/initialise-eigenvector-with-stdvector
+   Eigen::VectorXd ptsx2 = Eigen::Map<Eigen::VectorXd, Eigen::Unaligned>(ptsx.data(), ptsx.size());
+
+   Eigen::VectorXd ptsy2 = Eigen::Map<Eigen::VectorXd, Eigen::Unaligned>(ptsy.data(), ptsy.size());
+
+
+   for(int i=0; i < ptsx2.size(); i++)
+   {
+      double tempx = ptsx2[i];
+      ptsx2[i] = cos(psi) * (ptsx2[i] - px) + sin(psi) * (ptsy2[i] - py);
+      ptsy2[i] = -sin(psi) * (tempx - px) + cos(psi) * (ptsy2[i] - py);
+   }
+
+```
+
+Moreover, we have taken account that the vehicle's position is (0,0) that is why we assign to x,y, and psi the value of zero in the following C++ code. 
+
+```cpp
+   Eigen::VectorXd state(6);
+   // x and y coordinates are always zero, psi is also zero.
+   state << 0, 0, 0, v, cte, epsi;
+```
 
 
 
