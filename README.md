@@ -62,7 +62,7 @@ The car's behaviour looks better.
 
 ## Polynomial Fitting and MPC Preprocessing 
 
-
+We use a polynomial degree of order 3. In order to transform the waypoints to the car's coordinate system (the server returns waypoints using the map's coordinate system). 
 
 
 
