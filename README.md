@@ -31,7 +31,7 @@ The cost function is:
 
 
 ## Timestep Length and Elapsed Duration (N & dt)
-I started with the following pair of values N = 25 and dt = 0.05. These values are based on the following code provided in the lesson 19 Model Predictive Control: 
+I started with the following pair of values N = 25 and dt = 0.05. These values are based on the following code provided in the lesson 19, Model Predictive Control: 
 
 [https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp)
 
