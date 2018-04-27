@@ -31,7 +31,9 @@ The cost function is:
 
 
 ## Timestep Length and Elapsed Duration (N & dt)
-I started with the following pair of values N = 25 and dt = 0.05. 
+I started with the following pair of values N = 25 and dt = 0.05. These values are based on the following code provided in the lessons: 
+
+
 
 
 
