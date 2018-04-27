@@ -60,6 +60,9 @@ The result of this, is shown in the video below:
 The car's behaviour looks better. 
 
 
+## Polynomial Fitting and MPC Preprocessing 
+
+
 
 
 
