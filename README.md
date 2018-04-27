@@ -7,9 +7,19 @@ Source code:
 ## The model 
 We consider the following Model Predictive Control model: 
 
-![equation]()
+![equation](./images/equation0001.png)
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=X_%7Bt%2B1%7D%20%3D%20X_%7Bt%7D%20%2B%20%20%5Cnu_%7Bt%7D%20%2A%20sin%28%20%5Cpsi_%7Bt%7D%29%2Adt&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![equation](./images/equation0002.png)
+
+![equation](./images/equation0003.png)
+
+![equation](./images/equation0004.png)
+
+![equation](./images/equation0005.png)
+
+![equation](./images/equation0006.png)
+
+![equation](./images/equation0007.png)
 
 
 
