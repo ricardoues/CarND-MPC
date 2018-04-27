@@ -35,7 +35,7 @@ I started with the following pair of values N = 25 and dt = 0.05. These values a
 
 [https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp)
 
-In this moment we don't consider latency. I think the combination of values N=25 and dt = 0.05 is good. The result of this is shown in the video below: 
+In this moment we don't consider latency. I think the combination of values N=25 and dt = 0.05 is good. The result of this, is shown in the video below: 
 
 [https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be](https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be)
 
@@ -53,7 +53,11 @@ for (int t = 0; t < N - 2; t++) {
 }
 ```
 
+The result of this, is shown in the video below: 
 
+[https://www.youtube.com/watch?v=TQxROUeTm9Y&feature=youtu.be](https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be)
+
+The car's behaviour looks better. 
 
 
 
