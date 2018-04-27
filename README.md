@@ -63,13 +63,23 @@ We change the following code
 CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
 ```
 
-to this
+to this (I take this value from a lesson and I think it is a good value to tune MPC).
 
 ```cpp
 CppAD::100*pow(vars[a_start + t + 1] - vars[a_start + t], 2);
 ```cpp
 
-Unfortunately, the vehicle crashed. 
+Unfortunately, the vehicle crashed but it performs better than the previous attempt. This result is shown in the following video: 
+
+[https://www.youtube.com/watch?v=txyXmnzYC40&feature=youtu.be](https://www.youtube.com/watch?v=txyXmnzYC40&feature=youtu.be)
+
+We multiply the following component of the cost function by these values: 1, 2, 3, 4, 5, 6, 7
+
+```cpp
+      fg[0] += 7*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+```cpp
+
+
 
 
 
