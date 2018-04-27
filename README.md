@@ -25,6 +25,11 @@ The actuators are:
 
 ![equation](./images/equation0009.png)
 
+The cost function is:
+
+![equation](./images/equation0007.png)
+
+
 
 
 
