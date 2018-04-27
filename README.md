@@ -9,6 +9,8 @@ We consider the following Model Predictive Control model:
 
 ![equation](./images/equation0001.png)
 
+![equation](./images/equation0002.png)
+
 
 
 
