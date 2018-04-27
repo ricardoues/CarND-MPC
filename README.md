@@ -35,13 +35,17 @@ I started with the following pair of values N = 25 and dt = 0.05. These values a
 
 [https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp)
 
-In this moment we don't consider latency. I think the combination of values N=25 and dt = 0.05 is good. The result of this, is shown in the video below: 
+In this moment we don't consider latency. The combination of values N=25 and dt = 0.05 is bad because the car was oscillating. The result of this, is shown in the video below: 
 
-[https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be](https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be)
+[https://www.youtube.com/watch?v=5dMnkuqyets&feature=youtu.be](https://www.youtube.com/watch?v=5dMnkuqyets&feature=youtu.be)
 
 
+We try the following values of N: 
 
-I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
+| 25| 22 | 19  | 16  | 13  |
+|---|---|---|---|---|
+
+The best value was 13. I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
 
 
 ```cpp
