@@ -45,7 +45,7 @@ We try the following values of N:
 | 25| 22 | 19  | 16  | 13  |
 |---|---|---|---|---|
 
-The best value was 13. I noticed that sometimes the vehicle would likely steer off the road and possibly crash. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
+The best value was 13. I noticed that sometimes the vehicle steers off the road and crashs. It would be very unpleasant to take a ride in this car, would't it? In order to fix this we tune the part of the cost function affecting steering: 
 
 
 ```cpp
@@ -53,9 +53,26 @@ The best value was 13. I noticed that sometimes the vehicle would likely steer o
  // Minimize the value gap between sequential actuations.
 for (int t = 0; t < N - 2; t++) {
    fg[0] += CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
-   fg[0] += 100*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+   fg[0] += CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
 }
 ```
+
+We change the following code
+
+```cpp
+CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+```
+
+to this
+
+```cpp
+CppAD::100*pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+```cpp
+
+Unfortunately, the vehicle crashed. 
+
+
+
 
 The result of this, is shown in the video below: 
 
