@@ -35,6 +35,8 @@ I started with the following pair of values N = 25 and dt = 0.05. These values a
 
 [https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/mpc_to_line/solution/MPC.cpp)
 
+In this moment we don't use 
+
 
 
 
