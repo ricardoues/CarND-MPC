@@ -91,7 +91,9 @@ Moreover, we have taken into account that the vehicle's position is (0,0) that i
    state << 0, 0, 0, v, cte, epsi;
 ```
 
+## Model Predictive Control with Latency
 
+In order to deal with latency I use a simply approach, try different values of the variable iters in the following code
 
 
 
