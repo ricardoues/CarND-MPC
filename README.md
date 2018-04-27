@@ -7,6 +7,8 @@ Source code:
 ## The model 
 We consider the following Model Predictive Control model: 
 
+$$ X_{t} $$
+
 
 
 
