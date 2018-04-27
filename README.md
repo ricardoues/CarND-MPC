@@ -19,6 +19,12 @@ We consider the following Model Predictive Control model:
 
 ![equation](./images/equation0006.png)
 
+The actuators are: 
+
+![equation](./images/equation0008.png)
+
+![equation](./images/equation0009.png)
+
 
 
 
