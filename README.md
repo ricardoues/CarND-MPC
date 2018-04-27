@@ -80,13 +80,10 @@ We multiply the following component of the cost function by these values: 1, 2, 
 ```cpp
 
 
+The best result was obtained with the value of 7, this result is shown below. 
 
+[https://www.youtube.com/watch?v=8Cw6W2i0nZ4&feature=youtu.be](https://www.youtube.com/watch?v=8Cw6W2i0nZ4&feature=youtu.be)
 
-
-
-The result of this, is shown in the video below: 
-
-[https://www.youtube.com/watch?v=TQxROUeTm9Y&feature=youtu.be](https://www.youtube.com/watch?v=Pgh-WwLoA_w&feature=youtu.be)
 
 The car's behaviour looks better. 
 
