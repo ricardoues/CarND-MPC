@@ -121,7 +121,32 @@ Moreover, we have taken into account that the vehicle's position is (0,0) that i
 
 ## Model Predictive Control with Latency
 
-In order to deal with latency I use a simply approach, try different values of the variable iters in the following code
+In order to deal with latency I use a simply approach, try different values of the variable iters in the following code in order to simulate n steps ahead and deal with latency. The best value was 2.  
+
+
+```cpp
+   int iters = 2;
+   double steer_value = 0.0;
+   double throttle_value = 0.0;
+
+   for (size_t i = 0; i < iters; i++)
+   {
+       std::cout << "Iteration " << i << std::endl;
+
+       auto vars = mpc.Solve(state, coeffs);
+
+       steer_value = vars[6] ;
+       throttle_value = vars[7];
+
+       state << vars[0], vars[1], vars[2], vars[3], vars[4], vars[5];
+   }
+```
+
+In the following video, we show the final MPC model working in the simulator.
+
+[https://www.youtube.com/watch?v=hAImOrAzzBQ&feature=youtu.be](https://www.youtube.com/watch?v=hAImOrAzzBQ&feature=youtu.be)
+
+
 
 
 
