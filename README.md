@@ -135,7 +135,7 @@ In order to deal with latency we predict the state of the car 100ms in the futur
           v = v + a * latency_dt;
 ```
 
-After that we transform the data to the car's coordinate system, fit a polynomial with order 3 
+After that we transform the data to the car's coordinate system, fit a polynomial with order 3, calculate cte and epsi, and finally we calculate the state with the solver. 
 
 In the following video, we show the final MPC model working in the simulator.
 
