@@ -67,7 +67,7 @@ to this (I take this value from a lesson and I think it is a good value to tune 
 
 ```cpp
 CppAD::100*pow(vars[a_start + t + 1] - vars[a_start + t], 2);
-```cpp
+```
 
 Unfortunately, the vehicle crashed but it performs better than the previous attempt. This result is shown in the following video: 
 
