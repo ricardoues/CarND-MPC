@@ -28,6 +28,8 @@ const double Lf = 2.67;
 //double ref_v = 40;
 double ref_v = 40;
 
+
+
 // The solver takes all the state variables and actuator
 // variables in a singular vector. Thus, we should to establish
 // when one variable starts and another ends to make our lifes easier.
@@ -162,10 +164,13 @@ class FG_eval {
 MPC::MPC() { }
 MPC::~MPC() {}
 
+
 vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   bool ok = true;
   size_t i;
   typedef CPPAD_TESTVECTOR(double) Dvector;
+
+
 
 
   double x = state[0];

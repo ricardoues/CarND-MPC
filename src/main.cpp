@@ -66,23 +66,18 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
   return result;
 }
 
+//  We apply a transformation to the waypoints in order to
+// transform these points to the car's coordinate system.
 
-Eigen::MatrixXd transformGlobalToLocal(double x, double y, double psi, const vector<double> & ptsx, const vector<double> & ptsy) {
-
-    assert(ptsx.size() == ptsy.size());
-    unsigned len = ptsx.size();
-
-    auto waypoints = Eigen::MatrixXd(2,len);
-
-    for (int i=0; i<len ; ++i){
-      waypoints(0,i) =   cos(psi) * (ptsx[i] - x) + sin(psi) * (ptsy[i] - y);
-      waypoints(1,i) =  -sin(psi) * (ptsx[i] - x) + cos(psi) * (ptsy[i] - y);
-    }
-
-    return waypoints;
-
+void transformGlobalToLocal(double x, double y, double psi, Eigen::VectorXd &ptsx,  Eigen::VectorXd &ptsy)
+{
+  for(int i=0; i < ptsx.size(); i++)
+  {
+      double tempx = ptsx[i];
+      ptsx[i] = cos(psi) * (ptsx[i] - x) + sin(psi) * (ptsy[i] - y);
+      ptsy[i] = -sin(psi) * (tempx - x) + cos(psi) * (ptsy[i] - y);
+  }
 }
-
 
 
 
@@ -92,11 +87,15 @@ int main() {
   // MPC is initialized here!
   MPC mpc;
 
+
   h.onMessage([&mpc](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
                      uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
+
+
+
     string sdata = string(data).substr(0, length);
     cout << sdata << endl;
     if (sdata.size() > 2 && sdata[0] == '4' && sdata[1] == '2') {
@@ -114,6 +113,21 @@ int main() {
           double py = j[1]["y"];
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
+          double delta = j[1]["steering_angle"];
+          double a = j[1]["throttle"];
+
+
+          const double latency_dt = 0.1;
+
+          const double Lf = 2.67;
+
+
+          px = px + v * cos(psi) * latency_dt;
+          py = py + v * sin(psi) * latency_dt;
+          psi = psi - v * delta / Lf * latency_dt;
+          v = v + a * latency_dt;
+
+
 
           // The following two lineas were take from
           // https://stackoverflow.com/questions/17036818/initialise-eigenvector-with-stdvector
@@ -122,14 +136,7 @@ int main() {
           Eigen::VectorXd ptsy2 = Eigen::Map<Eigen::VectorXd, Eigen::Unaligned>(ptsy.data(), ptsy.size());
 
 
-          for(int i=0; i < ptsx2.size(); i++)
-          {
-              double tempx = ptsx2[i];
-              ptsx2[i] = cos(psi) * (ptsx2[i] - px) + sin(psi) * (ptsy2[i] - py);
-              ptsy2[i] = -sin(psi) * (tempx - px) + cos(psi) * (ptsy2[i] - py);
-          }
-
-
+          transformGlobalToLocal(px, py, psi, ptsx2,  ptsy2);
 
 
           // The polynomial is fitted to a polynomial with
@@ -139,7 +146,6 @@ int main() {
 
           // The car is always at the point (0,0)
           // that's why we calculate cte and pi in this way.
-
           double cte = polyeval(coeffs, 0);
 
 
@@ -147,15 +153,7 @@ int main() {
 
 
           Eigen::VectorXd state(6);
-          // x and y coordinates are always zero, psi is also zero.
-          state << 0, 0, 0, v, cte, epsi;
-
-          auto vars = mpc.Solve(state, coeffs);
-
-          //double steer_value = vars[6];
-          //double throttle_value = vars[7];
-
-
+          state << 0.0, 0.0, 0.0, v, cte, epsi;
 
 
           /*
@@ -166,27 +164,11 @@ int main() {
           */
 
 
-          // We simulate 2 steps ahead
+          auto vars = mpc.Solve(state, coeffs);
 
 
-          int iters = 2;
-
-
-          double steer_value = 0.0;
-          double throttle_value = 0.0;
-
-          for (size_t i = 0; i < iters; i++)
-          {
-              std::cout << "Iteration " << i << std::endl;
-
-              auto vars = mpc.Solve(state, coeffs);
-
-              steer_value = vars[6] ;
-              throttle_value = vars[7];
-
-              state << vars[0], vars[1], vars[2], vars[3], vars[4], vars[5];
-          }
-
+          double steer_value = vars[6];
+          double throttle_value = vars[7];
 
 
           if (steer_value >1)
@@ -216,7 +198,8 @@ int main() {
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
           // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
           //msgJson["steering_angle"] = -steer_value/0.436332;
-          msgJson["steering_angle"] = -steer_value/deg2rad(25);
+          //msgJson["steering_angle"] = -steer_value/deg2rad(25);
+          msgJson["steering_angle"] = -steer_value;
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory
@@ -281,7 +264,7 @@ int main() {
           //
           // NOTE: REMEMBER TO SET THIS TO 100 MILLISECONDS BEFORE
           // SUBMITTING.
-          //this_thread::sleep_for(chrono::milliseconds(100));
+          this_thread::sleep_for(chrono::milliseconds(100));
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
       } else {
