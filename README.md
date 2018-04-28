@@ -82,9 +82,7 @@ We multiply the following component of the cost function by these values: 1, 2, 
 
 The best result was obtained with the value of 7, this result is shown below. 
 
-
-
-[https://www.youtube.com/watch?v=8Cw6W2i0nZ4&feature=youtu.be](https://www.youtube.com/watch?v=8Cw6W2i0nZ4&feature=youtu.be)
+[https://www.youtube.com/watch?v=Pgh-WwLoA_w](https://www.youtube.com/watch?v=Pgh-WwLoA_w)
 
 
 The car's behaviour looks better. 
