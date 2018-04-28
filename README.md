@@ -77,7 +77,7 @@ We multiply the following component of the cost function by these values: 1, 2, 
 
 ```cpp
       fg[0] += 7*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
-```cpp
+```
 
 
 The best result was obtained with the value of 7, this result is shown below. 
